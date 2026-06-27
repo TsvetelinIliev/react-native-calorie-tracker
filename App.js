@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView,SafeAreaProvider } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
     return (
-        <View style={styles.container}>
+
+        <SafeAreaProvider>
+        <SafeAreaView style={styles.container}>
             {/* Header */}
             <View>
 
@@ -35,7 +38,8 @@ export default function App() {
 
             </View>
             <StatusBar style="auto" />
-        </View>
+        </SafeAreaView>
+        </SafeAreaProvider>
     );
 }
 
