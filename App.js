@@ -52,7 +52,13 @@ export default function App() {
             <View style={styles.endSection}>
 
                <Home />
-               <Plus />
+
+               <TouchableOpacity onPress={addMealPressHandler}  >
+
+                <Plus />
+
+               </TouchableOpacity>
+               
              
 
             </View>
