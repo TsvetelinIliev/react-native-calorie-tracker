@@ -1,9 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView,SafeAreaProvider } from 'react-native-safe-area-context';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {  Text, TouchableOpacity, View } from 'react-native';
 import { Home, Plus } from 'lucide-react-native';
+import { styles } from './styles';
+import MealSection from './components/meal-section/MealSection';
+import AddMeal from './components/add-meal/AddMeal';
+import { useState } from 'react';
 
 export default function App() {
+
+    const [showAddMeal,setShowAddMeal] = useState(false);
+
+    const addMealPressHandler = () => {
+        setShowAddMeal(true);
+
+    }
     return (
 
         <SafeAreaProvider>
@@ -25,11 +36,16 @@ export default function App() {
 
             {/* Meal section */}
 
-            <View style={styles.section}>
+            <MealSection  onAddMeal={ addMealPressHandler} />
 
-                <Text>List of meals</Text>
+            {/* Add meal modal */}
+                {/* { showAddMeal &&   <AddMeal  onClose={() => setShowAddMeal(false)} />  */}
 
-            </View>
+                <AddMeal visible={showAddMeal} onClose={() => setShowAddMeal(false)} />
+
+                
+
+            
 
             {/* App Bar */}
 
@@ -47,56 +63,3 @@ export default function App() {
     );
 };
 
-const colors = {
-    white: '#fff',
-    background: '#F9FAFB',
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.background,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    section: {
-
-         //boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-        boxShadow: [{offsetX: 2, offsetY: 3, blurRadius: 4,color: 'rgba(200,200,200,0.53)' }],
-        backgroundColor: colors.white,
-        borderWidth: 1,
-        borderColor: '#edf2f7',
-        borderRadius: 15,
-        width: '90%',
-        padding: 10,
-
-
-    },
-     endSection: {
-        width: '100%',
-        backgroundColor: colors.white,
-        border: 1,
-        borderColor: 'edf2f7',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        paddingVertical: 20,
-
-
-
-        
-
-    },
-    header: {
-
-    },
-    heading: {
-
-        textAlign: 'center',
-        fontSize: 26,
-        fontWeight: 'bold',
-
-
-    },
-   
-   
-});
